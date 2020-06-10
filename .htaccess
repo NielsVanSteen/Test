@@ -1,0 +1,48 @@
+#General
+RewriteEngine on
+Options -Indexes
+
+#index page.
+    #index with parameter.
+    RewriteRule ^index/([0-9+]+)$ index.php?catID=$1 [L]
+    #Index with /login and parameter
+    RewriteRule ^index/([0-9+]+)/login$ index.php?catID=$1 [L]
+
+    #index without parameter
+    RewriteRule ^index?$ index.php [L]
+    #Index with /login
+    RewriteRule ^index/login?$ index.php [L]
+
+#article page.
+RewriteRule ^article/([\w-\s]+)?$ ./pages/article.php?link=$1 [NC]
+
+#Write page.
+RewriteRule ^write?$ ./pages/write.php
+RewriteRule ^write/([\w-\s]+)?$ ./pages/write.php?article-link=$1
+
+#Files page.
+RewriteRule ^files?$ ./pages/files.php
+
+#Categories page.
+RewriteRule ^categories?$ ./pages/categories.php
+
+#channels page
+RewriteRule ^channels?$ ./pages/channels.php
+
+#calendar page.
+RewriteRule ^calendar?$ ./pages/calendar.php
+
+#Account page.
+RewriteRule ^account/([\w-\s]+)?$ ./pages/account.php?message=$1
+RewriteRule ^account?$ ./pages/account.php
+
+#FAQ page
+RewriteRule ^FAQ?$ ./pages/faq.php
+
+#rssgenerate page
+RewriteRule ^rssgenerate/([\w-\s]+)?$ ./pages/rssgenerate.php?rssID=$1
+
+#[NC] = non-case sensitive (convert uppercase to lowercase in url)
+#[L] = Last rule
+#[N] = New rule
+# ([\w-\s]+) is the same as ([0-9a-zA-Z_-]+) + with spaces.
