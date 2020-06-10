@@ -42,11 +42,15 @@
             $articleURL = $this->connect()->real_escape_string($articleURL);
 
             //Execute sql.
-            if($this->setArticle($articleTitle,$this->date,$articleSummary,$articleBody, $articleCategory, $articleSubcategory, $articleSigner, $FunctionsObj->replaceSpaces(strtolower($articleURL)))) {
+            /*if($this->setArticle($articleTitle,$this->date,$articleSummary,$articleBody, $articleCategory, $articleSubcategory, $articleSigner, $FunctionsObj->replaceSpaces(strtolower($articleURL)))) {
                 echo $FunctionsObj->outcomeMessage("success","Article has successfully been saved.");
             } else {
-                echo $FunctionsObj->outcomeMessage("success","Failed to save article.");
-            }
+                echo $FunctionsObj->outcomeMessage("error","Failed to save article.");
+            }*/
+
+            echo $this->setArticle($articleTitle,$this->date,$articleSummary,$articleBody, $articleCategory, $articleSubcategory, $articleSigner, $FunctionsObj->replaceSpaces(strtolower($articleURL)));
+
+
         }//Method createArticle.
 
         public function saveEditArticle($articleTitle,$articleSummary,$articleBody,$articleSigner,$articleURL,$link) {

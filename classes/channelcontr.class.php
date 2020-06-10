@@ -52,6 +52,13 @@
             //Real escape string.
             $channelID = $this->connect()->real_escape_string($channelID);
 
+            //Check if an article is published on that channel.
+            $result = $this->getMediaChannel($channelID);
+            if ($result->num_rows > 0) {
+                echo $FunctionsObj->outcomeMessage("error","You have to unpublish all the articles on the channel before you can delete it.");
+                return false;
+            }
+
             //Execute sql.
             if ($this->unSetChannel($channelID)) {
                 echo $FunctionsObj->outcomeMessage("success","Channel has successfully been deleted.");

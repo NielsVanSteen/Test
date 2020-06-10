@@ -6,12 +6,13 @@
             $conn = $this->connect();
             $user = $_SESSION["userID"];
             $sql = "INSERT INTO article (author_id, creation_time, published, deleted, title, content, abstract, category_id, subcategory_id, signed_by, link)
-            VALUES (?, ?, '0', '0', ?, ?, ?, ?, ?, ?, ?)";
+            VALUES (?, ?, 0, 0, ?, ?, ?, ?, ?, ?, ?)";
             $stmt = $conn->prepare($sql); 
             $stmt->bind_param("issssiiss",$user, $date, $articleTitle, $articleBody, $articleSummary, $articleCategory, $articleSubcategory, $articleSigner, $articleURL);
             $stmt->execute();
             $result = $stmt->get_result();
-            return $result;
+            //return $result;
+            return $conn->error;
         }//Method setArticle.
 
         protected function reSetArticle($articleTitle,$articleSummary,$articleBody,$articleSigner,$articleURL,$link) {

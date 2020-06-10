@@ -49,8 +49,7 @@
             $stmt = $conn->prepare($sql); 
             $stmt->bind_param("si", $categoryName, $parent_id);
             $stmt->execute();
-            $result = $stmt->get_result();
-            return $result;
+            return $stmt;
         }//Method setCategory.
 
         protected function unsetCatSubcat($id) {
@@ -59,8 +58,7 @@
             $stmt = $conn->prepare($sql); 
             $stmt->bind_param("ii", $id, $id);
             $stmt->execute();
-            $result = $stmt->get_result();
-            return $result;
+            return $stmt;
         }//Method unsetCatSubcat.
 
     }//Class Category.

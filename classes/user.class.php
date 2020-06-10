@@ -24,12 +24,11 @@
         public function insertUser($username,$displayname,$password) {
             $conn = $this->connect();
             $sql = "INSERT INTO user (username, password, display_name, function)
-            VALUES (?, ?, ?, '0')";
+            VALUES (?, ?, ?, 0)";
             $stmt = $conn->prepare($sql); 
             $stmt->bind_param("sss",$username, $password, $displayname);
             $stmt->execute();
-            $result = $stmt->get_result();
-            return $result;
+            return $stmt;
         }//Method inertUser.
 
         protected function getCurUser($userID,$password) {
@@ -48,8 +47,7 @@
             $stmt = $conn->prepare($sql); 
             $stmt->bind_param("si",$newPassword, $userID);
             $stmt->execute();
-            $result = $stmt->get_result();
-            return $result;
+            return $stmt;
         }//Method reSetPassword.
 
         protected function reSetUsername($newUsername,$id) {
@@ -58,8 +56,7 @@
             $stmt = $conn->prepare($sql); 
             $stmt->bind_param("si",$newUsername, $id);
             $stmt->execute();
-            $result = $stmt->get_result();
-            return $result;
+            return $stmt;
         }//Method reSetUsername.
 
         protected function reSetDisplayname($newDisplayname,$id) {
@@ -68,8 +65,7 @@
             $stmt = $conn->prepare($sql); 
             $stmt->bind_param("si",$newDisplayname, $id);
             $stmt->execute();
-            $result = $stmt->get_result();
-            return $result;
+            return $stmt;
         }//Method reSetDisplayname.
 
         protected function unSetUser($userID) {
@@ -78,8 +74,7 @@
             $stmt = $conn->prepare($sql); 
             $stmt->bind_param("i",$userID);
             $stmt->execute();
-            $result = $stmt->get_result();
-            return $result;
+            return $stmt;
         }//Method unSetUser.
 
         protected function getUserName($userID) {

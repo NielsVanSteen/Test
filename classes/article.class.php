@@ -67,10 +67,10 @@
             LEFT JOIN category c ON a.category_id = c.row_id
             LEFT JOIN category s ON a.subcategory_id = s.row_id
             LEFT JOIN user u ON a.author_id = u.row_id 
-            WHERE a.subcategory_id=? AND a.deleted=? AND a.published=?
+            WHERE a.subcategory_id=? AND a.deleted=0 AND a.published=1
             ORDER BY a.row_id ASC";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("iii", $subcat_id, 0, 1);
+            $stmt->bind_param("i", $subcat_id);
             $stmt->execute();
             $result = $stmt->get_result();
             return $result;
@@ -82,18 +82,16 @@
             $stmt = $conn->prepare($sql);
             $stmt->bind_param("ii", $visibility, $id);
             $stmt->execute();
-            $result = $stmt->get_result();
-            return $result;
+            return $stmt;
         }//Method reSetArticle.
 
         protected function unSetArticle($id) {
             $conn = $this->connect();
-            $sql = "UPDATE article SET deleted=? WHERE row_id=?";
+            $sql = "UPDATE article SET deleted=1 WHERE row_id=?";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("ii", 1, $id);
+            $stmt->bind_param("i", $id);
             $stmt->execute();
-            $result = $stmt->get_result();
-            return $result;
+            return $stmt;
         }//Method unSetArticle.
 
         protected function getArticleChannel($channelID) {
@@ -126,18 +124,16 @@
             $stmt = $conn->prepare($sql);
             $stmt->bind_param("iis", $articleID, $channelID, $data);
             $stmt->execute();
-            $result = $stmt->get_result();
-            return $result;
+            return $stmt;
         }//Method setArticleChannel.
 
         protected function unSetArticleChannel($articleID,$channelID) {
             $conn = $this->connect();
-            $sql = "DELETE FROM articlechannel WHERE article_id=$articleID AND channel_id=$channelID";
+            $sql = "DELETE FROM articlechannel WHERE article_id=? AND channel_id=?";
             $stmt = $conn->prepare($sql);
             $stmt->bind_param("ii", $articleID, $channelID);
             $stmt->execute();
-            $result = $stmt->get_result();
-            return $result;
+            return $stmt;
         }//Method unSetArticleChannel.
 
     }//Article.

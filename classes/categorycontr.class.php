@@ -29,7 +29,6 @@
             //Execute sql.
             if($this->setCatSubcat($catSubcatName,$parentID)) {
                 echo $FunctionsObj->outcomeMessage("success","'".$catSubcatName."' has successfully been added.");
-                return false;
             } else {
                 echo $FunctionsObj->outcomeMessage("error","Failed to add '".$catSubcatName."'.");
                 return false;

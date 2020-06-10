@@ -34,7 +34,18 @@
             $stmt->execute();
             $result = $stmt->get_result();
             return $result;
-        }//GetMediaChannels.
+        }//Method getMediaChannels.
+
+        protected function getMediaChannel($channelID) {
+            $conn = $this->connect();
+            $sql = "SELECT c.row_id FROM articlechannel ac
+            INNER JOIN channel c ON ac.channel_id=c.row_id WHERE c.row_id=?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("i", $channelID); 
+            $stmt->execute();
+            $result = $stmt->get_result();
+            return $result;
+        }//Method getMediaChannel.
 
         protected function setChannel($name,$canUnpublish,$type) {
             $conn = $this->connect();
@@ -43,8 +54,7 @@
             $stmt = $conn->prepare($sql); 
             $stmt->bind_param("sii", $name, $canUnpublish, $type);
             $stmt->execute();
-            $result = $stmt->get_result();
-            return $result;
+            return $stmt;
         }//Method setChannel.
 
         protected function unSetChannel($channelID) {
@@ -53,8 +63,7 @@
             $stmt = $conn->prepare($sql); 
             $stmt->bind_param("i", $channelID);
             $stmt->execute();
-            $result = $stmt->get_result();
-            return $result;
+            return $stmt;
         }//Method unSetchannel.
 
     }//Channel.

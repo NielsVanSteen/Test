@@ -186,8 +186,7 @@ class UserContr extends User implements LinkUrl {
         $confirmPassword = $this->connect()->real_escape_string($confirmPassword);
 
         //Execute sql.
-        $result = $this->insertUser($username,$displayname,md5($password));
-        if ($result === TRUE) {
+        if ($this->insertUser($username,$displayname,md5($password))) {
            //echo $FunctionsObj->outcomeMessage("error","Account has successfully been added.");
            header("Location: ".LinkUrl::LINKURL."account/addAccount");
            return false;

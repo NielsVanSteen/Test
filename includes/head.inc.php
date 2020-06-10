@@ -27,16 +27,5 @@
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script defer src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
-
-<!-- Custom CSS -->
-<link href="/css/modern-business.css" rel="stylesheet">
-
-<!-- Custom Fonts -->
-<link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"> 
-
-
 <!--Link to Font Awesome.-->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-
-<!--LinkedIn.-->
-<script src="https://platform.linkedin.com/in.js" type="text/javascript"></script>

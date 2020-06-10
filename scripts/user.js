@@ -18,7 +18,7 @@ function openLogindialog() {
             <input type='radio' name='loginCookieRadio' value='1'>\
             <small>Save (or update) login data in a cookie.</small><br>\
             <input type='radio' name='loginCookieRadio' value='0' checked>\
-            <small>Don't save (or delete) login data from the cookie.</small>\
+            <small>Don't save (or delete) login data from the cookie.</small><br>\
             <small id='loginMessage'></small>";
     button = "<button class='btn btn-primary' onclick='login()''>Login</button>";
     openDialog(heading,body,button);
