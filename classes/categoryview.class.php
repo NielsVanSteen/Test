@@ -117,7 +117,7 @@
             //Execute sql.
             $result = $this->getSubcatsFromParentCat($parentID);
             echo "<div class='list-group index-subcategories-listgroup'>";
-            echo "<a class='list-group-item list-group-item-action active disabled list-group-items-header'>Categorieën</a>";
+            echo "<a class='list-group-item list-group-item-action active disabled list-group-items-header'>Subcategorieën</a>";
             if ($result->num_rows > 0) {
                
                 while($row = $result->fetch_assoc()) {

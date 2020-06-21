@@ -58,7 +58,7 @@
 
                 <!--Article titles container-->
                 <div class="col-md-9 col-lg-9 articles-article-overview-container">
-                    <p class="alert alert-warning" role="alert">Klik op een categorie om de artikels weer te geven.</p>
+                    <p class="alert alert-warning" role="alert">Klik op een subcategorie om de artikels weer te geven.</p>
                 </div><!-- Article title container-->   
             </div><!--Row-->
               

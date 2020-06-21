@@ -108,7 +108,8 @@ function deleteUser(id) {
             deleteUser:"deleteUser"
         },
         success: function(data) {
-            location.reload();
+            //location.reload();
+            window.location.href = linkUrl+"account";
             $(".account-alert-messages").html(data);
         },
     });

@@ -238,7 +238,14 @@ label {
 .articles-article-info p:nth-child(2) {
     text-align: right;
 }
-
+/*Standard style for ckeditor generated elements.*/
+.articles-article-overview-container ul {
+    margin-left: 2.5rem !important;
+}
+.articles-article-overview-container a {
+    left: 0px;
+    position: relative;
+}
 
 /*WRITE PAGE.*/
 .form-control {

@@ -7,8 +7,7 @@
             $sql = "SELECT * FROM category WHERE parent_id=0";
             $stmt = $conn->prepare($sql); 
             $stmt->execute();
-            $result = $stmt->get_result();
-            return $result;
+            return $stmt->get_result();
         }//Method getCategories.
 
         protected function getCategory($categoryID) {
@@ -17,8 +16,7 @@
             $stmt = $conn->prepare($sql); 
             $stmt->bind_param("i", $categoryID);
             $stmt->execute();
-            $result = $stmt->get_result();
-            return $result;
+            return $stmt->get_result();
         }//Method getCategory.
 
         protected function getSubcatsFromParentCat($parent_id) {
@@ -27,8 +25,7 @@
             $stmt = $conn->prepare($sql); 
             $stmt->bind_param("i", $parent_id);
             $stmt->execute();
-            $result = $stmt->get_result();
-            return $result;
+            return $stmt->get_result();
         }//Method getCategories.
 
         protected function getCatsAndSubcats() {
@@ -38,8 +35,7 @@
             ON p.row_id = c.parent_id WHERE p.parent_id=0 ORDER BY p.row_id ASC, c.row_id ASC";
             $stmt = $conn->prepare($sql); 
             $stmt->execute();
-            $result = $stmt->get_result();
-            return $result;
+            return $stmt->get_result();
         }//Method getCatsAndSubcats.
 
         protected function setCatSubcat($categoryName,$parent_id) {
@@ -48,8 +44,7 @@
             VALUES (?, ?)";
             $stmt = $conn->prepare($sql); 
             $stmt->bind_param("si", $categoryName, $parent_id);
-            $stmt->execute();
-            return $stmt;
+            return $stmt->execute();
         }//Method setCategory.
 
         protected function unsetCatSubcat($id) {
@@ -57,8 +52,7 @@
             $sql = "DELETE p FROM category p LEFT JOIN category c ON p.row_id = c.parent_id WHERE p.row_id=? OR p.parent_id=?";
             $stmt = $conn->prepare($sql); 
             $stmt->bind_param("ii", $id, $id);
-            $stmt->execute();
-            return $stmt;
+            return $stmt->execute();
         }//Method unsetCatSubcat.
 
     }//Class Category.

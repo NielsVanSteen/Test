@@ -11,8 +11,7 @@
             $stmt = $conn->prepare($sql); 
             $stmt->bind_param("i", $articleID);
             $stmt->execute();
-            $result = $stmt->get_result();
-            return $result;
+            return $stmt->get_result();
         }//getNonPublishedChannels.
 
         protected function getPublishedChannels($articleID) {
@@ -23,8 +22,7 @@
             $stmt = $conn->prepare($sql); 
             $stmt->bind_param("i", $articleID);
             $stmt->execute();
-            $result = $stmt->get_result();
-            return $result;
+            return $stmt->get_result();
         }//Method getPublishedChannels.
 
         protected function getMediaChannels() {
@@ -32,8 +30,7 @@
             $sql = "SELECT * FROM channel";
             $stmt = $conn->prepare($sql); 
             $stmt->execute();
-            $result = $stmt->get_result();
-            return $result;
+            return $stmt->get_result();
         }//Method getMediaChannels.
 
         protected function getMediaChannel($channelID) {
@@ -43,8 +40,7 @@
             $stmt = $conn->prepare($sql);
             $stmt->bind_param("i", $channelID); 
             $stmt->execute();
-            $result = $stmt->get_result();
-            return $result;
+            return $stmt->get_result();
         }//Method getMediaChannel.
 
         protected function setChannel($name,$canUnpublish,$type) {
@@ -53,8 +49,7 @@
             VALUES (?, ?, ?)";
             $stmt = $conn->prepare($sql); 
             $stmt->bind_param("sii", $name, $canUnpublish, $type);
-            $stmt->execute();
-            return $stmt;
+            return $stmt->execute();
         }//Method setChannel.
 
         protected function unSetChannel($channelID) {
@@ -62,8 +57,7 @@
             $sql = "DELETE FROM channel WHERE row_id=? AND type=2";
             $stmt = $conn->prepare($sql); 
             $stmt->bind_param("i", $channelID);
-            $stmt->execute();
-            return $stmt;
+            return $stmt->execute();
         }//Method unSetchannel.
 
     }//Channel.

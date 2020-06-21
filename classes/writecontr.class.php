@@ -35,20 +35,20 @@
             //Real escape string.
             $articleTitle = $this->connect()->real_escape_string($articleTitle);
             $articleSummary = $this->connect()->real_escape_string($articleSummary);
-            $articleBody = $this->connect()->real_escape_string($articleBody);
+            //$articleBody = $this->connect()->real_escape_string($articleBody); //makes all weird characters.
             $articleCategory = $this->connect()->real_escape_string($articleCategory);
             $articleSubcategory = $this->connect()->real_escape_string($articleSubcategory);
             $articleSigner = $this->connect()->real_escape_string($articleSigner);
             $articleURL = $this->connect()->real_escape_string($articleURL);
 
             //Execute sql.
-            /*if($this->setArticle($articleTitle,$this->date,$articleSummary,$articleBody, $articleCategory, $articleSubcategory, $articleSigner, $FunctionsObj->replaceSpaces(strtolower($articleURL)))) {
+            if($this->setArticle($articleTitle,$this->date,$articleSummary,$articleBody, $articleCategory, $articleSubcategory, $articleSigner, $FunctionsObj->replaceSpaces(strtolower($articleURL)))) {
                 echo $FunctionsObj->outcomeMessage("success","Article has successfully been saved.");
             } else {
                 echo $FunctionsObj->outcomeMessage("error","Failed to save article.");
-            }*/
+            }
 
-            echo $this->setArticle($articleTitle,$this->date,$articleSummary,$articleBody, $articleCategory, $articleSubcategory, $articleSigner, $FunctionsObj->replaceSpaces(strtolower($articleURL)));
+            //echo $this->setArticle($articleTitle,$this->date,$articleSummary,$articleBody, $articleCategory, $articleSubcategory, $articleSigner, $FunctionsObj->replaceSpaces(strtolower($articleURL)));
 
 
         }//Method createArticle.

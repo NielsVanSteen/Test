@@ -22,11 +22,11 @@
             
             //Change the order.
             switch ($sort) {
-                case "DATEDESC":
-                    $order = "a.creation_time DESC";
+                case "DATEASC":
+                    $order = "a.creation_time ASC";
                     break;
                 default:
-                    $order = "a.creation_time ASC";
+                    $order = "a.creation_time DESC";
                     break;
             }
                 
@@ -39,8 +39,7 @@
             WHERE (a.title LIKE '%$keyword%' OR u.display_name LIKE '%$keyword%' OR a.abstract LIKE '%$keyword%' OR s.category LIKE '%$keyword%' OR c.category LIKE '%$keyword%') AND $where
             ORDER BY $order
             LIMIT $limit";
-            $result = $this->connect()->query($sql);
-            return $result;
+            return $this->connect()->query($sql);
         }//Method getArticles.
         
         protected function getArticle($article_link) {
@@ -55,8 +54,7 @@
             $stmt = $conn->prepare($sql); 
             $stmt->bind_param("s", $article_link);
             $stmt->execute();
-            $result = $stmt->get_result();
-            return $result;
+            return $stmt->get_result();
         }//Method getArticle.
 
         protected function getArticleFromSubcat($subcat_id) {
@@ -72,8 +70,7 @@
             $stmt = $conn->prepare($sql);
             $stmt->bind_param("i", $subcat_id);
             $stmt->execute();
-            $result = $stmt->get_result();
-            return $result;
+            return $stmt->get_result();
         }//Method getArticleFromSubcat.
 
         protected function reSetArticle($id,$visibility) {
@@ -81,8 +78,7 @@
             $sql = "UPDATE article SET published=? WHERE row_id=?";
             $stmt = $conn->prepare($sql);
             $stmt->bind_param("ii", $visibility, $id);
-            $stmt->execute();
-            return $stmt;
+            return $stmt->execute();
         }//Method reSetArticle.
 
         protected function unSetArticle($id) {
@@ -90,8 +86,7 @@
             $sql = "UPDATE article SET deleted=1 WHERE row_id=?";
             $stmt = $conn->prepare($sql);
             $stmt->bind_param("i", $id);
-            $stmt->execute();
-            return $stmt;
+            return $stmt->execute();
         }//Method unSetArticle.
 
         protected function getArticleChannel($channelID) {
@@ -112,8 +107,7 @@
             $stmt = $conn->prepare($sql);
             $stmt->bind_param("i", $channelID);
             $stmt->execute();
-            $result = $stmt->get_result();
-            return $result;
+            return $stmt->get_result();
         }//Method unSetArticle.
 
         protected function setArticleChannel($articleID,$channelID) {
@@ -123,8 +117,7 @@
             VALUES (?, ?, ?)";
             $stmt = $conn->prepare($sql);
             $stmt->bind_param("iis", $articleID, $channelID, $data);
-            $stmt->execute();
-            return $stmt;
+            return $stmt->execute();
         }//Method setArticleChannel.
 
         protected function unSetArticleChannel($articleID,$channelID) {
@@ -132,8 +125,7 @@
             $sql = "DELETE FROM articlechannel WHERE article_id=? AND channel_id=?";
             $stmt = $conn->prepare($sql);
             $stmt->bind_param("ii", $articleID, $channelID);
-            $stmt->execute();
-            return $stmt;
+            return $stmt->execute();
         }//Method unSetArticleChannel.
 
     }//Article.

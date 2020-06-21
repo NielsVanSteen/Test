@@ -103,7 +103,7 @@
                 echo "</table>";
                 
             } else {
-                 echo $FunctionsObj->outcomeMessage("warning","Er zijn geen artikels gevonden voor deze categorie.");
+                 echo $FunctionsObj->outcomeMessage("warning","Er zijn geen artikels gevonden voor deze subcategorie.");
             }
         }//Method showArticlesIndex.
         

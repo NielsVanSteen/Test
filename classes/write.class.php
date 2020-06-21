@@ -9,10 +9,7 @@
             VALUES (?, ?, 0, 0, ?, ?, ?, ?, ?, ?, ?)";
             $stmt = $conn->prepare($sql); 
             $stmt->bind_param("issssiiss",$user, $date, $articleTitle, $articleBody, $articleSummary, $articleCategory, $articleSubcategory, $articleSigner, $articleURL);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            //return $result;
-            return $conn->error;
+            return $stmt->execute();
         }//Method setArticle.
 
         protected function reSetArticle($articleTitle,$articleSummary,$articleBody,$articleSigner,$articleURL,$link) {
@@ -21,8 +18,7 @@
             $stmt = $conn->prepare($sql); 
             $stmt->bind_param("ssssss",$articleTitle, $articleBody, $articleSummary, $articleSigner, $articleURL, $link);
             $stmt->execute();
-            $result = $stmt->get_result();
-            return $result;
+            return $stmt->get_result();
         }//Method reSetArticle.
 
         public function checkCatIsCat($articleCategory) {
@@ -31,8 +27,7 @@
             $stmt = $conn->prepare($sql); 
             $stmt->bind_param("i",$articleCategory);
             $stmt->execute();
-            $result = $stmt->get_result();
-            return $result;
+            return $stmt->get_result();
         }//Method checkCatIsCat.
 
         public function checkSubcatIsSubcat($articleSubcategory) {
@@ -41,8 +36,7 @@
             $stmt = $conn->prepare($sql); 
             $stmt->bind_param("i",$articleSubcategory);
             $stmt->execute();
-            $result = $stmt->get_result();
-            return $result;
+            return $stmt->get_result();
         }//Method checkSubcatIsSubcat.
 
     }//Class Write.

@@ -8,8 +8,7 @@
             $stmt = $conn->prepare($sql); 
             $stmt->bind_param("ss",$username, $password);
             $stmt->execute();
-            $result = $stmt->get_result();
-            return $result;
+            return $stmt->get_result();
         }//Method login. 
 
         public function getUsers() {
@@ -17,8 +16,7 @@
             $sql = "SELECT * FROM user";
             $stmt = $conn->prepare($sql); 
             $stmt->execute();
-            $result = $stmt->get_result();
-            return $result;
+            return $stmt->get_result();
         }//Method getUsers.
 
         public function insertUser($username,$displayname,$password) {
@@ -27,8 +25,7 @@
             VALUES (?, ?, ?, 0)";
             $stmt = $conn->prepare($sql); 
             $stmt->bind_param("sss",$username, $password, $displayname);
-            $stmt->execute();
-            return $stmt;
+            return $stmt->execute();
         }//Method inertUser.
 
         protected function getCurUser($userID,$password) {
@@ -37,8 +34,7 @@
             $stmt = $conn->prepare($sql); 
             $stmt->bind_param("is",$userID, $password);
             $stmt->execute();
-            $result = $stmt->get_result();
-            return $result;
+            return $stmt->get_result();
         }//Method getUser.
 
         protected function reSetPassword($newPassword,$userID) {
@@ -46,8 +42,7 @@
             $sql = "UPDATE user SET password=? WHERE row_id=?";
             $stmt = $conn->prepare($sql); 
             $stmt->bind_param("si",$newPassword, $userID);
-            $stmt->execute();
-            return $stmt;
+            return $stmt->execute();
         }//Method reSetPassword.
 
         protected function reSetUsername($newUsername,$id) {
@@ -55,8 +50,7 @@
             $sql = "UPDATE user SET username=? WHERE row_id=?";
             $stmt = $conn->prepare($sql); 
             $stmt->bind_param("si",$newUsername, $id);
-            $stmt->execute();
-            return $stmt;
+            return $stmt->execute();
         }//Method reSetUsername.
 
         protected function reSetDisplayname($newDisplayname,$id) {
@@ -64,8 +58,7 @@
             $sql = "UPDATE user SET display_name=? WHERE row_id=?";
             $stmt = $conn->prepare($sql); 
             $stmt->bind_param("si",$newDisplayname, $id);
-            $stmt->execute();
-            return $stmt;
+            return $stmt->execute();
         }//Method reSetDisplayname.
 
         protected function unSetUser($userID) {
@@ -73,8 +66,7 @@
             $sql = "DELETE FROM user WHERE row_id=? AND function=0";
             $stmt = $conn->prepare($sql); 
             $stmt->bind_param("i",$userID);
-            $stmt->execute();
-            return $stmt;
+            return $stmt->execute();
         }//Method unSetUser.
 
         protected function getUserName($userID) {
@@ -83,8 +75,7 @@
             $stmt = $conn->prepare($sql); 
             $stmt->bind_param("i",$userID);
             $stmt->execute();
-            $result = $stmt->get_result();
-            return $result;
+            return $stmt->get_result();
         }//Method getUserName.
 
     }//UserContr.

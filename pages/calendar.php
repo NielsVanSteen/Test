@@ -57,7 +57,7 @@
                         <a class='list-group-item list-group-item-action list-group-item-light'>
                             <select name="selectFilterArticles" id="selectFilterArticles" onchange="filterArticles()">
                                 <option value="DATEASC">DATE ASC</option>
-                                <option value="DATEDESC">DATE DESC</option>
+                                <option value="DATEDESC" selected>DATE DESC</option>
                             </select>
                         </a>
                         <a class='list-group-item list-group-item-action disabled'>Search articles</a>
@@ -72,7 +72,7 @@
                     <!--Show all articles.-->
                     <?php 
                         $ArticleObj = new ArticleView();
-                        $ArticleObj->showArticle('all','DATEASC','',10);
+                        $ArticleObj->showArticle('all','DATEDESC','',10);
                     ?>
                 </div><!-- Articles container.-->   
 

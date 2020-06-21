@@ -26,18 +26,10 @@ class UserContr extends User implements LinkUrl {
                     //Set session.
                     $_SESSION["userID"] = $row["row_id"];
                     $_SESSION["userFunction"] = $row["function"];
+                    $_SESSION["username"] = $row["username"];
 
                     //Set or update cookie if user allowed it, otherwise don't set or delete it.
-                    if ($cookiePreset == 1) {
-                        setcookie("username",$row["username"],time() + (86400 * 30),'/');
-                        setcookie("password",$password,time() + (86400 * 30),'/');
-                    } else {
-                        //Check if cookie exists and delete if they do.
-                        if (isset($_COOKIE["username"])) {
-                            setcookie("username",$row["username"],time() - 1000,'/');
-                            setcookie("password",$password,time() - 1000,'/');
-                        }//If.
-                    }//If.  
+                    $FunctionsObj->updateCookies($username, $password, $cookiePreset);
             }//While.
         } else {
             echo $FunctionsObj->outcomeMessage('error','Username is incorrect.');
@@ -88,6 +80,13 @@ class UserContr extends User implements LinkUrl {
         $userID = $_SESSION["userID"];
         $result = $this->reSetPassword(md5($newPassword),$userID);
         if ($result === TRUE) {
+            //Update or delete cookie.
+            if (isset($_COOKIE["username"]))
+                $cookiePreset = 1;
+            else 
+                $cookiePreset = 0;
+            $FunctionsObj->updateCookies($_SESSION["username"], $newPassword, $cookiePreset);
+
             //echo $FunctionsObj->outcomeMessage("success","Password has succesfully been changed.");
             header("Location: ".LinkUrl::LINKURL."account/pass-change");
         } else {
@@ -115,6 +114,16 @@ class UserContr extends User implements LinkUrl {
         //Change username.
         $result = $this->reSetUSername($newUsername,$_SESSION["userID"]);
         if ($result === TRUE) {
+            //Update or delete cookie.
+            if (isset($_COOKIE["username"]))
+                $cookiePreset = 1;
+            else 
+                $cookiePreset = 0;
+            $FunctionsObj->updateCookies($_SESSION["username"], $newPassword, $cookiePreset);
+
+            //Change username session.
+            $_SESSION["username"] = $newUsername;
+
             //echo $FunctionsObj->outcomeMessage("success","Username has succesfully been changed.");
             header("Location: ".LinkUrl::LINKURL."account/username-change");
         } else {

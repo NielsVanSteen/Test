@@ -56,5 +56,16 @@
             }
         }//Method checkUserLoggedIn.
 
+        public function updateCookies($username, $password, $cookiePreset) {
+            //Update or delete cookie.
+            if ($cookiePreset == 1) {
+                setcookie("username", $username, time() + (86400 * 30),'/');
+                setcookie("password", $password, time() + (86400 * 30),'/');
+            } else {
+                setcookie("username", $username, time() - 1000,'/');
+                setcookie("password", $password, time() - 1000,'/');
+            }
+        }//Method updateCookies.
+
     }//Functions.
 ?>
